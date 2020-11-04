@@ -2,7 +2,7 @@ library(jsonlite)
 source("logger.R")
 source("RFunction.R")
 
-inputFileName = "TenGeese_lowres_7XX.rds" #important to set to NULL for movebank-download
+inputFileName = "input_MoveApps_RIET.rds" #important to set to NULL for movebank-download
 outputFileName = "output.rds"
 
 args <- list()
@@ -17,11 +17,10 @@ args <- list()
 #    args[["password"]] = "any-password"
 
 # Add your arguments of your r function here
-args[["time_now"]] = "2014-02-15 12:00:00" #"2013-09-30 12:00:00"
-args[["volt_name"]] = "tag_voltage"
+args[["time_now"]] = NULL #"2014-02-15 12:00:00" 
+args[["volt_name"]] = NULL #"tag_voltage"
 args[["mig7d_dist"]] = 100000
 args[["dead7d_dist"]] = 10
-
 
 
 #################################################################

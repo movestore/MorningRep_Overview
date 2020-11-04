@@ -1,6 +1,7 @@
 library('move')
 library('foreach')
 library('lutz')
+library('sf')
 library('grid')
 library('gridExtra')
 
@@ -63,6 +64,10 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
   
   if (!is.null(volt_name))  voltE <- foreach(datai = data_spl, .combine=c) %do% {
     tail(datai@data[,volt_name],1)
+  } else 
+  {
+    voltE <- rep(NA,length(ids))
+    logger.info("No specification of voltage variable given, thus NA returned in voltage column of the overview table.")
   }
   
   overview <- data.frame(ids,tags,time0,timeE,timeE_local,voltE,posis24h,posis7d,displ24h,displ7d,event)
@@ -90,7 +95,8 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
   gl <- lapply(groups, function(id) tg[id,])
   
   
-  pdf(paste0(Sys.getenv(x = "APP_ARTIFACTS_DIR", "/tmp/"),"MorningReport_overviewTable.pdf"), paper = "a4r", width = 0, height = 0)
+  #pdf(paste0(Sys.getenv(x = "APP_ARTIFACTS_DIR", "/tmp/"),"MorningReport_overviewTable.pdf"), paper = "a4r", width = 0, height = 0)
+  pdf("MorningReport_overviewTable.pdf", paper = "a4r", width = 0, height = 0)
   for(page in seq_len(npages)){
     grid.newpage()
     grid.rect(width=unit(29.7,"cm") - margin,
