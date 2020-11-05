@@ -95,8 +95,8 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
   gl <- lapply(groups, function(id) tg[id,])
   
   
-  #pdf(paste0(Sys.getenv(x = "APP_ARTIFACTS_DIR", "/tmp/"),"MorningReport_overviewTable.pdf"), paper = "a4r", width = 0, height = 0)
-  pdf("MorningReport_overviewTable.pdf", paper = "a4r", width = 0, height = 0)
+  pdf(paste0(Sys.getenv(x = "APP_ARTIFACTS_DIR", "/tmp/"),"MorningReport_overviewTable.pdf"), paper = "a4r", width = 0, height = 0)
+  #pdf("MorningReport_overviewTable.pdf", paper = "a4r", width = 0, height = 0)
   for(page in seq_len(npages)){
     grid.newpage()
     grid.rect(width=unit(29.7,"cm") - margin,
