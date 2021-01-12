@@ -10,7 +10,7 @@
 	{
       "id": "volt_name",
       "name": "Voltage variable name",
-      "description": "Provide the exact name of the variable in your data describing tag voltage.",
+      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure, run the first App of your Workflow and see the Cargo Agent results (green button on the right) for the correct voltage attribute name spelling.",
       "defaultValue": null,
       "type": "STRING"
     },
