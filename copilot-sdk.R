@@ -17,7 +17,7 @@ args <- list()
 #    args[["password"]] = "any-password"
 
 # Add your arguments of your r function here
-args[["time_now"]] = "2014-03-20 12:00:00" 
+args[["time_now"]] = "2014-03-20T12:00:00.000Z" 
 args[["volt_name"]] = "tag_voltage"
 args[["mig7d_dist"]] = 100000
 args[["dead7d_dist"]] = 10
