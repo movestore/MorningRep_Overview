@@ -10,21 +10,21 @@
 	{
       "id": "volt_name",
       "name": "Voltage variable name",
-      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure, run the first App of your Workflow and see the Cargo Agent results (green button on the right) for the correct voltage attribute name spelling.",
+      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure, please run the first App in your workflow and check the Variable Names in the Output Details overview.",
       "defaultValue": null,
       "type": "STRING"
     },
 	{
       "id": "mig7d_dist",
-      "name": "Migration distance (7 days)",
-      "description": "Define radius (in m) of which the animal must move out to define as migration behaviour.",
+      "name": "Migration buffer (last 7 days)",
+      "description": "Define the radius (in m) an animal must move past to qualify as migration behaviour.",
       "defaultValue": 100000.0,
       "type": "DOUBLE"
     },
 	{
       "id": "dead7d_dist",
-      "name": "Dead indication distance (7 days)",
-      "description": "Define radius (in m) in which the animal must remain to be defined as dead.",
+      "name": "Mortality buffer (last 7 days)",
+      "description": "Define the radius (in m) within which an animal must remain to indicate a likely mortality.",
       "defaultValue": 100.0,
       "type": "DOUBLE"
     }
