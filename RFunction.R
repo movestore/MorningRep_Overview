@@ -11,11 +11,17 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
   
   if (is.null(time_now)) time_now <- Sys.time() else time_now <- as.POSIXct(time_now,format="%Y-%m-%dT%H:%M:%OSZ",tz="UTC")
   
+  names(data) <- make.names(names(data),allow_=FALSE)
+  
   data_spl <- move::split(data)
   ids <- namesIndiv((data))
-  tags <- foreach(datai = data_spl, .combine=c) %do% {
-    datai@data$tag_local_identifier[1]
-  }
+  if (any(names(data@data)=="tags.local.identifier"))
+  {
+    tags <- foreach(datai = data_spl, .combine=c) %do% {
+      datai@data$tag.local.identifier[1]
+    }
+  } else tags <- rep(NA,length(ids))
+  
   time0 <- foreach(datai = data_spl, .combine=c) %do% {
     as.character(min(timestamps(datai)))
   }
