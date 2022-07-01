@@ -11,11 +11,28 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
   
   if (is.null(time_now)) time_now <- Sys.time() else time_now <- as.POSIXct(time_now,format="%Y-%m-%dT%H:%M:%OSZ",tz="UTC")
   
+  ids <- namesIndiv((data))
+  data_spl <- move::split(data)
+  
+  #do this before make.names to keep relation to previous App Cargo Agent
+  if (is.null(volt_name))
+  {
+    voltE <- rep(NA,length(ids))
+    logger.info("No specification of voltage variable given, thus NA returned in voltage column of the overview table.")
+  } else if (volt_name %in% names(data))  
+  {
+    voltE <- foreach(datai = data_spl, .combine=c) %do% {
+      tail(datai@data[,volt_name],1)}
+  } else 
+  {
+    voltE <- rep(NA,length(ids))
+    logger.info("Your provided tag voltage variable name does not exist in the data. Please double check and try again. NAs are returned in the voltage column of your overview table.")
+  }
+  
   names(data) <- make.names(names(data),allow_=FALSE)
   
   data_spl <- move::split(data)
-  ids <- namesIndiv((data))
-  if (any(names(data@data)=="tags.local.identifier"))
+  if (any(names(data@data)=="tag.local.identifier"))
   {
     tags <- foreach(datai = data_spl, .combine=c) %do% {
       datai@data$tag.local.identifier[1]
@@ -70,20 +87,6 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
     if (length(ix)>0) paste(round(sum(distance(datai[ix,]))/1000,digits=3),"km") else NA
   }
   
-  if (is.null(volt_name))
-  {
-    voltE <- rep(NA,length(ids))
-    logger.info("No specification of voltage variable given, thus NA returned in voltage column of the overview table.")
-  } else if (volt_name %in% names(data))  
-  {
-    voltE <- foreach(datai = data_spl, .combine=c) %do% {
-      tail(datai@data[,volt_name],1)}
-  } else 
-  {
-    voltE <- rep(NA,length(ids))
-    logger.info("Your provided tag voltage variable name does not exist in the data. Please double check and try again. NAs are returned in the voltage column of your overview table.")
-  }
-
   overview <- data.frame(ids,tags,time0,timeE,timeE_local,voltE,posis24h,posis7d,displ24h,displ7d,event)
   names(overview) <- c("Animal","Tag","First timestamp","Last timestamp","Last timestamp local tz","Tag voltage","N posi. 24h","N posi. 7d","Moved dist. 24h","Moved dist. 7d","Event 7d")
   
