@@ -18,22 +18,22 @@ moveStack in Movebank format
 ### Artefacts
 `MorningReport_overviewTable.pdf`: A simple overview table of the above specified data properties for each animal (row).
 
-### Parameters 
-`time_now`: reference timestamp towards which all analyses are performed. Generally (and by default) this is NOW, especially if in the field and looking for one or the other animal or wanting to make sure that it is still doing fine. When analysing older data sets, this parameter can be set to other timestamps so that the number of positions, distance travelled and detected events can be calculated in realtion to it.
+### Settings
+**Reference time (`time_now`):** reference timestamp towards which all analyses are performed. Generally (and by default) this is NOW, especially if in the field and looking for one or the other animal or wanting to make sure that it is still doing fine. When analysing older data sets, this parameter can be set to other timestamps so that the number of positions, distance travelled and detected events can be calculated in realtion to it.
 
-`volt_name`: Tags of different manufacturers often return tag voltages with different column names. To allow for this flexibility the user has to exactly provide the name of this data attribute. Please be careful to account for possible points, underscores and capitalisation.
+**Voltage variable name (`volt_name`):** Tags of different manufacturers often return tag voltages with different column names. To allow for this flexibility the user has to exactly provide the name of this data attribute. Please be careful to account for possible points, underscores and capitalisation.
 
-`mig7d_dist`: user-defined distance that an animal of the respecitve species is expected to minimally move during up to 7 days during migration. This variable is used to define the event `migration` that is reported in the overview table. The default value is presently set to 100000 m = 100 km.
+**Migration buffer (last 7 days) (`mig7d_dist`):** user-defined distance that an animal of the respecitve species is expected to minimally move during up to 7 days during migration. This variable is used to define the event `migration` that is reported in the overview table. The default value is presently set to 100000 m = 100 km.
 
-`dead7d_dist`: user-defined distance that an animal of the respecitve species is expected to minimally move during 7 days if it is alive. Take into account the data resolution, which can also miss longer displacements. This variable is used to define the event `dead` that is reported in the overview table. The default value is presently set to 100 m.
+**Mortality buffer (last 7 days) (`dead7d_dist`):** user-defined distance that an animal of the respecitve species is expected to minimally move during 7 days if it is alive. Take into account the data resolution, which can also miss longer displacements. This variable is used to define the event `dead` that is reported in the overview table. The default value is presently set to 100 m.
 
 ### Null or error handling:
-**Parameter `time_now`:** If this parameter is left empty (NULL) the reference time is set to NOW. The present timestamp is extracted in UTC from the MoveApps server system.
+**Setting `time_now`:** If this parameter is left empty (NULL) the reference time is set to NOW. The present timestamp is extracted in UTC from the MoveApps server system.
 
-**Parameter `volt_name`:** If this parameter is left empty or the provided column name is not available in the data set, the volatege column in the overview table is set to NA. Respective warning messages are provided.
+**Setting `volt_name`:** If this parameter is left empty or the provided column name is not available in the data set, the volatege column in the overview table is set to NA. Respective warning messages are provided.
 
-**Parameter `mig7d_dist`:** The parameter has a explicit default value, so NULL or non-numeric values are not possible and will give an error.
+**Setting `mig7d_dist`:** The parameter has a explicit default value, so NULL or non-numeric values are not possible and will give an error.
 
-**Parameter `dead7d_dist`:** The parameter has a explicit default value, so NULL or non-numeric values are not possible and will give an error.
+**Setting `dead7d_dist`:** The parameter has a explicit default value, so NULL or non-numeric values are not possible and will give an error.
 
 **Data:** The data are not manipulated in this App, but used to provide an overview table. So that a possible Workflow can be continued after this App, the input data set is returned.
