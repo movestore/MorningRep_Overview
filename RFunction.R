@@ -30,6 +30,10 @@ rFunction = function(time_now=NULL, volt_name=NULL, mig7d_dist, dead7d_dist, dat
   }
   
   names(data) <- make.names(names(data),allow_=FALSE)
+  #add animal attributes to @data object
+  data.df <- as.data.frame(data)
+  ixo <- which(names(data.df) %in% names(data))
+  data@data <- cbind(data@data,data.df[,-ixo])
   
   data_spl <- move::split(data)
   if (any(names(data@data)=="tag.local.identifier"))
