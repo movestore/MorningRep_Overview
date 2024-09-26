@@ -1,4 +1,5 @@
 {
+  "version": "1.2",
   "settings": [
     {
       "id": "time_now",
@@ -10,49 +11,35 @@
 	{
       "id": "volt_name",
       "name": "Voltage variable name",
-      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure, please run the first App in your workflow and check the Variable Names in the Output Details overview.",
+      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure of attribute name or spelling, please run the previous App in your workflow and check the 'event_attributes' in the App Output Details (green 'i'). For definitions of Movebank attributes please refer to the Movebank Attribute Dictionary (https://www.movebank.org/cms/movebank-content/movebank-attribute-dictionary)."
       "defaultValue": null,
       "type": "STRING"
     },
 	{
-      "id": "mig7d_dist",
-      "name": "Migration buffer (last 7 days)",
-      "description": "Define the radius (in m) an animal must move past to qualify as migration behaviour.",
-      "defaultValue": 100000.0,
+      "id": "mig7d_distKM",
+      "name": "Migration buffer - Km (last 7 days)",
+      "description": "Define the radius (in Km) an animal must move past to qualify as migration behaviour.",
+      "defaultValue": 100.0,
       "type": "DOUBLE"
     },
 	{
       "id": "dead7d_dist",
-      "name": "Mortality buffer (last 7 days)",
+      "name": "Mortality buffer - m (last 7 days)",
       "description": "Define the radius (in m) within which an animal must remain to indicate a likely mortality.",
       "defaultValue": 100.0,
       "type": "DOUBLE"
     }
-	
   ],
   "dependencies": {
     "R": [
-      {
-        "name": "move"
-      },
-      {
-        "name": "foreach"
-      },
-	        {
-        "name": "lutz"
-      },
-	        {
-        "name": "sf"
-      },
-	        {
-        "name": "grid"
-      },
-	        {
-        "name": "gridExtra"
-      }
+      {"name": "move2"},
+      {"name": "dplyr"},
+      {"name": "sf"},
+      {"name": "geosphere"},
+      {"name": "lutz"},
+      {"name": "gridExtra"}
     ]
   },
-  "createsArtifacts": true,
   "license": {
     "key": "MIT"
   },
@@ -61,22 +48,31 @@
     "morning report",
     "pdf",
     "overview",
+    "table",
     "report",
-    "data"
+    "data",
+    "tag status"
   ],
-  "people": [
+   "people": [
     {
+      "firstName": "Anne",
+      "middleInitials": "K",
+      "lastName": "Scharf",  
+      "email": "ascharf@ab.mpg.de",
+      "roles": ["author", "creator"],
+      "orcid": "0000-0002-3357-8533",
+      "affiliation": "Max-Planck-Institute of Animal Behavior",
+      "affiliationRor": "https://ror.org/026stee22"
+},
+{
       "firstName": "Andrea",
       "middleInitials": null,
       "lastName": "Kölzsch",
       "email": "akoelzsch@ab.mpg.de",
-      "roles": ["author", "creator"],
+      "roles": ["contributor"],
       "orcid": "0000-0003-0193-1563",
       "affiliation": "Max-Planck-Institute of Animal Behavior",
       "affiliationRor": "https://ror.org/026stee22"
     }
-  ],
-  "documentation" : {
-    "url": "https://github.com/movestore/MorningRep_Overview/blob/master/README.md"
-  }
+  ]
 }
