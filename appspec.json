@@ -37,7 +37,6 @@
       {"name": "sf"},
       {"name": "geosphere"},
       {"name": "lutz"},
-      {"name": "grid"},
       {"name": "gridExtra"}
     ]
   },
