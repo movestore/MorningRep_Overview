@@ -11,7 +11,7 @@
 	{
       "id": "volt_name",
       "name": "Voltage variable name",
-      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure of attribute name or spelling, please run the previous App in your workflow and check the 'event_attributes' in the App Output Details (green 'i'). For definitions of Movebank attributes please refer to the Movebank Attribute Dictionary (https://www.movebank.org/cms/movebank-content/movebank-attribute-dictionary)."
+      "description": "Provide the exact name of the variable in your data describing tag voltage. If unsure of attribute name or spelling, please run the previous App in your workflow and check the 'event_attributes' in the App Output Details (green 'i'). For definitions of Movebank attributes please refer to the Movebank Attribute Dictionary (https://www.movebank.org/cms/movebank-content/movebank-attribute-dictionary).",
       "defaultValue": null,
       "type": "STRING"
     },
